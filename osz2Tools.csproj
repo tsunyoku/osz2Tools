@@ -16,4 +16,9 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
+      <PackageReference Include="Ionic.Zlib" Version="1.9.1.5" />
+    </ItemGroup>
+
 </Project>

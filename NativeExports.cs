@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using osz2Tools.IO;
 
 namespace osz2Tools;
 
@@ -10,9 +11,17 @@ public static class NativeExports
         var osz2Path = Marshal.PtrToStringAnsi(osz2Ptr)!;
         var targetPath = Marshal.PtrToStringAnsi(targetPtr)!;
 
-        var osz2Package = new Osz2Package(osz2Path);
+        Common.DecryptOsz2(osz2Path, targetPath);
+    }
 
-        foreach (var (fileName, fileBytes) in osz2Package.Files)
-            File.WriteAllBytes(Path.Combine(targetPath, fileName), fileBytes);
+    [UnmanagedCallersOnly(EntryPoint = "decrypt_patch")]
+    public static void DecryptPatch(IntPtr patchPtr, IntPtr oldOsz2Ptr, IntPtr targetPtr)
+    {
+        var patchPath = Marshal.PtrToStringAnsi(patchPtr)!;
+        var oldOsz2Path = Marshal.PtrToStringAnsi(oldOsz2Ptr)!;
+        var targetPath = Marshal.PtrToStringAnsi(targetPtr)!;
+
+        Common.DecryptPatch(oldOsz2Path, patchPath, targetPath);
+
     }
 }
