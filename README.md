@@ -4,4 +4,4 @@ C# solution to provide native tools for osz2.
 
 # Examples
 
-Soon..
+Examples can be found in the `examples` directory.
