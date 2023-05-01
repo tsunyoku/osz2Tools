@@ -1,6 +1,11 @@
 from ctypes import CDLL, c_char_p
 
-tools_dll = CDLL("./osz2Tools")
+if sys.platform == "win32":
+    dll_path = "./osz2Tools"
+else:
+    dll_path = "./osz2Tools.so"
+
+tools_dll = CDLL(dll_path)
 decrypt_osz2_func = tools_dll.decrypt_osz2
 decrypt_patch_func = tools_dll.decrypt_patch
 
