@@ -20,6 +20,11 @@ public class Osz2Package
         Read(File.OpenRead(path));
     }
 
+    public Osz2Package(Stream stream)
+    {
+        Read(stream);
+    }
+
     private void Read(Stream file)
     {
         var reader = new BinaryReader(file);
